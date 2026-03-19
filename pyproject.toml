@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "storage-monitor"
+version = "0.1.0"
+description = "Weekly self-storage pricing monitor for Extra Space Storage, Public Storage, and CubeSmart"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "OpenAI Codex"}]
+dependencies = [
+  "beautifulsoup4>=4.12",
+  "duckdb>=1.1",
+  "pandas>=2.2",
+  "playwright>=1.52",
+  "pydantic>=2.8",
+  "pyarrow>=17.0",
+  "python-dateutil>=2.9",
+  "requests>=2.32",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2",
+]
+
+[project.scripts]
+storage-monitor = "storage_monitor.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+
+[tool.setuptools.packages.find]
+where = ["src"]

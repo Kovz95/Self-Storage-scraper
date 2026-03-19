@@ -1,0 +1,6 @@
+1. Scaffold the Python package, dependency manifest, data directories, and CLI entrypoint around a run-oriented pipeline with separate adapters, normalization, storage, reporting, and scheduling concerns.
+2. Implement public-web facility discovery and unit scraping adapters for Extra Space Storage, Public Storage, and CubeSmart, preferring robots-allowed sitemaps, embedded JSON, and public API/network responses with Playwright fallback only where needed.
+3. Add typed models plus normalization utilities for size, pricing, promos, facility metadata, and deterministic `unit_key` generation so raw operator fields and comparable normalized fields are both preserved.
+4. Persist crawl runs, facility universe history, raw snapshots, normalized snapshots, Parquet extracts, DuckDB tables, and analyst-facing CSV/Markdown outputs under dated directories without overwriting prior runs.
+5. Implement sampled and full crawl modes, week-over-week delta logic against the latest prior completed run, and summary reporting by company, geography, size bucket, and peer overlap cohorts.
+6. Add pytest coverage for parsing and delta logic, document assumptions and scheduler usage in `README.md`, and run sanity checks after major implementation steps.
