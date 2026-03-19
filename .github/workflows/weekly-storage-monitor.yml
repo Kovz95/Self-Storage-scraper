@@ -46,6 +46,19 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: storage-monitor weekly-full
 
+      - name: Upload crawl outputs
+        if: steps.gate.outputs.should_run == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-storage-monitor-${{ github.run_id }}
+          path: |
+            data/reports/**
+            data/processed/**
+            data/raw/**
+            data/storage_monitor.duckdb
+          if-no-files-found: warn
+          retention-days: 30
+
       - name: Skip outside local run window
         if: steps.gate.outputs.should_run != 'true'
         run: echo "Skipped because the current local time is not Sunday 6:00 AM America/New_York."

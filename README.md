@@ -128,6 +128,7 @@ Exact workflow behavior:
 - the guard step checks `America/New_York`
 - only the run that lands on local Sunday `6:00 AM` continues
 - the workflow executes `storage-monitor weekly-full`
+- completed runs upload `data/reports/`, `data/processed/`, `data/raw/`, and `data/storage_monitor.duckdb` as a GitHub Actions artifact retained for 30 days
 
 If you prefer local scheduling, use a weekly cron job that invokes:
 
@@ -142,6 +143,8 @@ On Windows Task Scheduler, use:
 ```powershell
 powershell -Command "cd 'C:\path\to\self storage scraper'; .\.venv\Scripts\Activate.ps1; storage-monitor weekly-full"
 ```
+
+GitHub Actions does not write directly to your PC. If you use the hosted workflow, download the uploaded artifact from the run page to retrieve the reports and database locally.
 
 ## Validation
 
